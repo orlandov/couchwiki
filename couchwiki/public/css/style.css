@@ -1,0 +1,40 @@
+.background-1 { background-color: #0086FF }
+.background-2 { background-color: #406180 }
+.background-3 { background-color: #00284D }
+.background-4 { background-color: #80C3FF }
+.background-5 { background-color: #E6F3FF }
+
+.color-1 { background-color: #0086FF }
+.color-2 { background-color: #406180 }
+.color-3 { background-color: #00284D }
+.color-4 { background-color: #80C3FF }
+.color-5 { background-color: #E6F3FF }
+
+
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+#content {
+    font-family: sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 32px 0px 32px;
+    border-width: 0px 1px 0px 1px;
+    border-color:  #80C3FF;
+    border-style: solid;
+    width: 700px;
+    height: 100%;
+}

@@ -5,7 +5,10 @@ Provides the BaseController class for subclassing.
 from pylons.controllers import WSGIController
 from pylons.templating import render_genshi as render
 
+import couchdb.client
 class BaseController(WSGIController):
+    def _get_db(self):
+        return couchdb.client.Database('http://localhost:5984/wiki')
 
     def __call__(self, environ, start_response):
         """Invoke the Controller"""

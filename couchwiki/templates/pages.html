@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      lang="en">
+<xi:include href="site.html" />
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title py:content="c.title">2Wikid</title>
+    <script>
+        $(function() {
+            $('.create-page .link').click(function() {
+                $('.create-page .options').show();
+                $('.create-page input.name').focus();
+            });
+
+            $('.create-page form').submit(function() {
+                var page_name = $('.create-page form .name').val();
+                window.location = '${h.url_for(controller='pages',
+                    action='create_update')}/' + page_name + '/create';
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<h1 class="name">Pages</h1>
+<ul>
+    <li class="create-page">
+        <a class="link" href="#">Create a page</a>
+        <div class="options" style="display:none">
+            <form>
+                <input class="name" type="text" />
+                <input class="submit" type="submit" value="Create" />
+            </form>
+        </div>
+    </li>
+    <li py:for="page in c.pages">
+    <a href="${h.url_for(controller='pages', page_id=page.url_name,
+        action='view')}">${page.name}</a>
+    </li>
+</ul>
+</body></html>
