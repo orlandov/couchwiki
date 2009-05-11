@@ -4,8 +4,9 @@ Provides the BaseController class for subclassing.
 """
 from pylons.controllers import WSGIController
 from pylons.templating import render_genshi as render
-
+import couchwiki.lib.helpers as h
 import couchdb.client
+
 class BaseController(WSGIController):
     def _get_db(self):
         return couchdb.client.Database('http://localhost:5984/wiki')

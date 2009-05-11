@@ -3,7 +3,7 @@ import logging
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
-from couchwiki.lib.base import BaseController, render
+from couchwiki.lib.base import BaseController, render, h 
 
 log = logging.getLogger(__name__)
 
@@ -40,7 +40,7 @@ class PagesController(BaseController):
         pages = [ p.value for p in db.view('_design/wiki/_view/pages') ]
         c.pages = pages
         c.pagey = h.url_for(controller='pages', page_id="boner", action='create_update')
-        return render("pages")
+        return render("pages.html")
 
     def create_update(self, **kwargs):
         db = self._get_db()
