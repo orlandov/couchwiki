@@ -1,0 +1,3 @@
+include couchwiki/config/deployment.ini_tmpl
+recursive-include couchwiki/public *
+recursive-include couchwiki/templates *
