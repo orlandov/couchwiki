@@ -5,6 +5,8 @@ from pylons.controllers.util import abort, redirect_to
 
 from couchwiki.lib.base import BaseController, render, h 
 
+from couchwiki.model import Page
+
 log = logging.getLogger(__name__)
 
 class PagesController(BaseController):
@@ -15,11 +17,11 @@ class PagesController(BaseController):
         
         if not page:
             c.desired_page_name = page_id
-            return render("new_page")
+            return render("new_page.html")
 
         c.page = page
         c.page.page_id = page_id
-        return render("page")
+        return render("page.html")
 
     def edit(self, **kwargs):
         db = self._get_db()
@@ -29,11 +31,11 @@ class PagesController(BaseController):
 
         c.page = page
 
-        return render("edit_page")
+        return render("edit_page.html")
         
     def create(self, **kwargs):
         c.desired_page_name = kwargs.get("page_id")
-        return render("new_page")
+        return render("new_page.html")
 
     def index(self):
         db = self._get_db()

@@ -18,15 +18,7 @@ def make_map():
     map.connect('/error/{action}', controller='error')
     map.connect('/error/{action}/{id}', controller='error')
 
-    # CUSTOM ROUTES HERE
-
-    map.connect('/{controller}/{action}')
-    map.connect('/{controller}/{action}/{id}')
-
-
-#   mine
     map.redirect('/', '/pages')
-
     map.connect('/pages', controller='pages', action='index',
         conditions=dict(method=['GET']))
     map.connect('/pages', controller='pages', action='create_update',
