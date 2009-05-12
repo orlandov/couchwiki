@@ -33,18 +33,32 @@ class PagesController(BaseController):
 
         return render("edit_page.html")
         
-    def create(self, **kwargs):
+    def edit_new(self, **kwargs):
         c.desired_page_name = kwargs.get("page_id")
         return render("new_page.html")
 
     def index(self):
         db = self._get_db()
-        pages = [ p.value for p in db.view('_design/wiki/_view/pages') ]
-        c.pages = pages
-        c.pagey = h.url_for(controller='pages', page_id="boner", action='create_update')
+        c.pages = [ p.value for p in db.view('_design/wiki/_view/pages') ]
         return render("pages.html")
 
-    def create_update(self, **kwargs):
+    def create(self, **kwargs):
+        db = self._get_db()
+
+        page_id = request.POST['page_name']
+        doc_name = "page_%s" % (page_id,)
+        page = Page.load(db, doc_name)
+
+        if page:
+            raise "Page already exists"
+        else:
+            page = Page(doc_name, name=page_id, body=request.POST['body'])
+            page.store(db)
+
+        redirect_to(str('/pages/%s' % (page_id,)))
+        return
+
+    def update(self, **kwargs):
         db = self._get_db()
 
         page_id = request.POST['page_name']
@@ -56,8 +70,7 @@ class PagesController(BaseController):
             page.body = request.POST['body']
             page.store(db)
         else:
-            page = Page(doc_name, name=page_id, body=request.POST['body'])
-            page.store(db)
+            raise "Page doesn't exist"
 
         redirect_to(str('/pages/%s' % (page_id,)))
         return
