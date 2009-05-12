@@ -17,8 +17,10 @@
 
             $('.create-page form').submit(function() {
                 var page_name = $('.create-page form .name').val();
-                window.location = '${h.url_for(controller='pages',
-                    action='create_update')}/' + page_name + '/create';
+                var url = '${h.url_for(controller="pages",
+                    page_id="__page_id__", action="edit_new")}';
+                url = url.replace('__page_id__', page_name);
+                window.location = url;
                 return false;
             });
         });

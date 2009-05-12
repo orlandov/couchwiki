@@ -14,7 +14,11 @@
 <body>
     <h1 class="name">${c.page.name}</h1>
     <hr/>
-    [ <a href="/pages/${c.page.page_id}/edit">edit</a> ]
+    [ <a href="${h.url_for(controller='pages', action='edit',
+        page_id=c.page.page_id)}">edit</a> ]
     <div class="content">${c.page.body}</div>
+
+    <hr/>
+    <div class="date">Created <span class="date">${c.page.created}</span>.</div>
 </body></html>
 

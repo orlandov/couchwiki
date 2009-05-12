@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-    <form class="page-form" method="POST" action="/pages/${c.page.name}">
+    <form class="page-form" method="POST" action="${h.url_for(controller='pages', action='create', page_id=c.page_name)}">
         Page name: <input type="text" name="page_name" value="${c.page.name}"/><br/>
         <textarea class="body" name="body">${c.page.body}</textarea>
         <input type="submit" />

@@ -19,7 +19,7 @@
 </head>
 <body><h1>hi</h1>
     <form class="page-form" method="POST"
-        action="${h.url_for(controller='pages', action='create_update')}">
+        action="${h.url_for(controller='pages', action='create')}">
         Page name: <input type="text" name="page_name" value="${c.desired_page_name}"/><br/>
         <textarea class="body" name="body"></textarea>
         <input type="submit" />
