@@ -8,6 +8,7 @@ from pylons import config
 from pylons.middleware import ErrorHandler, StatusCodeRedirect
 from pylons.wsgiapp import PylonsApp
 from routes.middleware import RoutesMiddleware
+from paste.deploy.config import PrefixMiddleware
 
 from couchwiki.config.environment import load_environment
 
@@ -44,6 +45,7 @@ def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
     app = RoutesMiddleware(app, config['routes.map'])
     app = SessionMiddleware(app, config)
     app = CacheMiddleware(app, config)
+    app = PrefixMiddleware(app, config, prefix='/wiki')
 
     # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
 
