@@ -5,3 +5,6 @@
     [paste.app_install]
     main = pylons.util:PylonsInstaller
     
+    [paste.server_runner]
+    pyscgi_threaded=pyscgi_wsgi:run_scgi_thread
+    pyscgi_forked=pyscgi_wsgi:run_scgi_fork
